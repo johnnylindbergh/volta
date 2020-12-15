@@ -1,0 +1,78 @@
+
+======== Representations of things ========
+  Poem:
+    scheme: List<String>
+    token_to_scheme_var: Map<String, SchemeVar>
+    scheme_vars: List<SchemeVar>
+
+  SchemeVar:
+    token: 'A'
+    occurences: 2
+    lines: List<Line>
+    get_next_line() // maintains internal state & returns each line in succession
+
+  Line:
+    structure: LineStructure
+    final_word: String
+
+  LineStructure:
+    length: Number
+    sentence_structures: List<SentenceStructure>
+
+  SentenceStructure:
+    length: Number
+    parts: List<PartOfSpeech>
+
+  each part of speech:
+  Article: 
+    instances: List<String>
+  ...
+
+======== Pre-processing ========
+  generate set of sentence structures (from grammar) for all line 
+    lengths from 1 to MAX_LINE_LENGTH
+
+  generate set of line structures (some multi-sentence, others single) by 
+    combining sentence structures.
+
+  create map from line length to line structures of that line length
+  
+======== Poem generation ========
+
+// scheme-vars: remaining scheme vars to set line instances for
+// used-rhymes: words that rhyme with previous scheme variable choices
+poem(scheme-vars: List<SchemeVar>, used-rhymes: Set<String>)
+  if scheme-vars is empty: succeed
+
+  // first instance of T (narrows everything else down)
+  for each in shuffle(line structures)
+    for each in shuffle(final words)
+      if final word in used-rhymes, continue loop
+
+      set first.structure, first.final_word
+
+      rhymes = rhymes(final_word)
+
+      // try to satisfy the rest of the instances of T
+      if satisfy-rest-of-instances(rest of instances, rhymes) fails:
+        continue loop
+
+      // try to satisfy the rest of the scheme variables
+      if poem(rest(scheme-vars), used-rhymes U rhymes) succeeds:
+        succeed
+
+  fail
+
+
+// choose structures & final words for the rest of the instances of a 
+// scheme variable, ensuring that all instances rhyme.
+satisfy-rest-of-instances(instances, valid-rhymes)
+  if instances is empty: succeed
+
+  for each in shuffle(line structures)
+    for each word in shuffle(valid-rhymes intersect final-words)
+
+      if satisfy-rest-of-instances(rest(instances), valid-rhymes) succeeds
+        succeed
+  
+  fail
