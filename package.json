@@ -1,0 +1,19 @@
+{
+  "name": "volta",
+  "version": "1.0.0",
+  "description": "A generalized rhyme scheme poem generator",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/johnnylindbergh/volta.git"
+  },
+  "author": "Johnny Lindbergh, Thomas Castleman",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/johnnylindbergh/volta/issues"
+  },
+  "homepage": "https://github.com/johnnylindbergh/volta#readme"
+}
