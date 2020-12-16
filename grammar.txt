@@ -1,0 +1,117 @@
+# taken from https://www.scientificpsychic.com/grammar/enggram6.html
+
+<Sentence> =
+  <SimpleSentence> |
+  <CompoundSentence>
+
+<SimpleSentence> =
+  <DeclarativeSentence> |
+  <ImperativeSentence> |
+  <ConditionalSentence>
+
+<CompoundSentence> =
+  <SimpleSentence> <conjunction> <SimpleSentence> |
+  "Either" <DeclarativeSentence> "or" <DeclarativeSentence> |
+  "Either" <ImperativeSentence> "or" <ImperativeSentence>
+
+<DeclarativeSentence> = <subject> <predicate> 
+
+<subject> = <SimpleSubject> | <CompoundSubject>
+
+<SimpleSubject> = <NounPhrase> | <NomPersonalPronoun>
+
+<NomPersonalPronoun> = "I" | "you" | "he" | "she" | "it" | "we" | "they"
+
+<noun> = 
+  <noun> |
+  <noun> <PrepPhr>
+
+<PrepPhr> = <preposition> <object>
+
+<adjective> = 
+  <adjective> "and" <adjective> |
+  <adjective> "or" <adjective>
+
+# check this ---------------------------------------------------------------
+<NounPhrase> =
+  "the" <SpecificProperNoun> |
+  <ProperNoun> |
+  <NonPersonalPronoun> |
+  <article> [<adverb>* <adjective>] <noun> |
+  [<adverb>* <adjective>] <noun-plural> |
+  <proper noun-possessive> [<adverb>* <adjective>] <noun> |
+  <personal possessive adjective> [<adverb>* <adjective>] <noun> |
+  <article> <common noun-possessive>
+        [<adverb>* <adjective>] <noun> 
+
+<CompoundSubject> =
+  <SimpleSubject> "and" <SimpleSubject> |
+  <SimpleSubject> "or" <SimpleSubject> |
+  "Either" <SimpleSubject> "or" <SimpleSubject> |
+  "Neither" <SimpleSubject> "nor" <SimpleSubject> 
+
+<predicate> = 
+  <verb> <complement> |
+  <VerbPhrase> <complement>
+
+<auxV> =  "must" | "may" |"might" |
+          "will" |"would" |"shall" |
+          "should" |"can" |"could"
+
+<verb> = <V1s> |<V2s> |<V3s> |
+       <V1p> |<V2p> |<V3p> |
+       <Vpast> |<LinkingVerb>
+
+<LinkingVerb> = "am" |"are" |"is" | "was"| "were" |
+       "look" | "looks" | "looked" |
+       "become" | "became" | "become"
+
+<VerbPhrase> =
+  ("had" |"have" |"has") ["not"] <Vpastp> |
+  ("had" |"have" |"has") ["not"] "been" [<Vpastp> | <Ving>] |
+  <auxV> ["not"] "have" <Vpastp> |
+  <auxV> ["not"] "have" "been" [<Vpastp> | <Ving>] |
+  <auxV> ["not"] "be" [<Vpastp> | <Ving>] |
+  <auxV> ["not"] <Vinf> |
+  "ought" ("to" | "not") <Vinf> |
+  "ought" ("to" | "not") "be" [<Vpastp> | <Ving>] |
+  "ought" ("to" | "not") "have" <Vpastp> |
+  "ought" ("to" | "not") "have" "been" [<Vpastp> | <Ving>] |
+  ("do" |"does" |"did") ["not"] [<Vinf>] |
+  ("am" |"are" |"is" |"was" |"were") ["not"] [<Vpastp> | <Ving>] |
+  ("am" |"are" |"is" |"was" |"were") ["not"] "being" [<Vpastp>] |
+  ("am" |"are" |"is" |"was" |"were") ["not"] "going" "to" [<Vinf>] 
+
+# but these would need to agree with the appropriate kinds of verbs ------------------------------
+<complement> =
+       [[<IndirectObject>] <object>] |
+       [<adverb>* <adjective>] |
+       [<PrepPhr>*] |
+       ["to" <Vinf> [<object>]] |
+       [<Ving>]
+
+<IndirectObject> = <object> =
+       <SimpleObject> | <CompoundObject>
+
+<SimpleObject> = 
+  <NounPhrase> |
+  <ObjPersonalPronoun>
+
+<ObjPersonalPronoun> = "me" | "you" | "him" | "her" |
+                        "it" | "us" | "you all" | "them"
+
+<CompoundObject> =
+  <SimpleObject> "and" <SimpleObject> |
+  <SimpleObject> "or" <SimpleObject> 
+
+<ImperativeSentence> = <predicate>
+
+<DependentClause> = 
+  "if" <DeclarativeSentence> |
+  "when" <DeclarativeSentence>
+
+<IndependentClause> = <DeclarativeSentence>
+
+<ConditionalSentence> =
+  <DependentClause> "," <IndependentClause> |
+  <IndependentClause> <DependentClause>
