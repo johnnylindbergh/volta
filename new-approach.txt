@@ -36,7 +36,7 @@
     combining sentence structures.
 
   create map from line length to line structures of that line length
-  
+
 ======== Poem generation ========
 
 // scheme-vars: remaining scheme vars to set line instances for
