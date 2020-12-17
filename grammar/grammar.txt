@@ -7,13 +7,11 @@
 
 <SimpleSentence> =
   <DeclarativeSentence> |
-  <ImperativeSentence> |
   <ConditionalSentence>
 
 <CompoundSentence> =
   <SimpleSentence> <Conjunction> <SimpleSentence> |
-  "Either" <DeclarativeSentence> "or" <DeclarativeSentence> |
-  "Either" <ImperativeSentence> "or" <ImperativeSentence>
+  "Either" <DeclarativeSentence> "or" <DeclarativeSentence>
 
 <Conjunction> = "and" | "but" | "so" | "yet"
 
@@ -27,9 +25,6 @@
 
 <SubjectS> = <SimpleSubjectS> | <CompoundSubjectS>
 <SubjectPl> = <SimpleSubjectPl> | <CompoundSubjectPl>
-
-<SimpleSubjectS> = <NounPhraseS> | "he" | "she" | "it"
-<SimpleSubjectPl> = <NounPhrasePl> | "they"
 
 # 3rd person singular noun phrases
 <NounPhraseS> =
@@ -45,6 +40,7 @@
 # 3rd person plural noun phrases
 <NounPhrasePl> =
   <NounPlural> |
+  "the" <NounPlural> |
   <AdjectiveOptConj> <NounPlural> |
   <Adverb> <AdjectiveOptConj> <NounPlural> |
   <PersonalPossessiveAdjective> <NounPlural> |
@@ -70,15 +66,18 @@
   <AdjectiveOptConj> "and" <AdjectiveOptConj> |
   <AdjectiveOptConj> "or" <AdjectiveOptConj>
 
+<SimpleSubjectS> = <NounPhraseS> | "he" | "she" | "it"
+<SimpleSubjectPl> = <NounPhrasePl> | "they"
+
 # singular compound subject
 <CompoundSubjectS> =
-  <SimpleSubject> "or" <SimpleSubject> |
-  "Either" <SimpleSubject> "or" <SimpleSubject>
+  <SimpleSubjectS> "or" <SimpleSubjectS> |
+  "Either" <SimpleSubjectS> "or" <SimpleSubjectS>
 
 # plural compound subject
 <CompoundSubjectPl> =
-  <SimpleSubject> "and" <SimpleSubject> |
-  "Neither" <SimpleSubject> "nor" <SimpleSubject>
+  <SimpleSubjectS> "and" <SimpleSubjectS> |
+  "Neither" <SimpleSubjectS> "nor" <SimpleSubjectS>
 
 <Predicate> = 
   <VerbIntr> |
@@ -105,10 +104,7 @@
   <VerbPhraseIODO3S> <IndirectObject> <DirectObject> |
   <VerbPhraseIODO3S> <DirectObject> "to" <IndirectObject>
 
-<DirectObject> = 
-  <Object> |
-  <Ving>
-
+<DirectObject> = <Object>
 <IndirectObject> = <Object>
 
 <auxV> =  
@@ -215,8 +211,6 @@
 <CompoundObject> =
   <SimpleObject> "and" <SimpleObject> |
   <SimpleObject> "or" <SimpleObject> 
-
-<ImperativeSentence> = <Predicate>
 
 <DependentClause> = 
   "if" <DeclarativeSentence> |

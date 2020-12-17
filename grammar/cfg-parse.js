@@ -1,4 +1,4 @@
-const { CFG, NonTerminal, Terminal, Literal } = require('./grammar.js');
+const { CFG, NonTerminal, Terminal, Literal } = require('./cfg.js');
 
 const tokenPatterns = [
   { name: "lhs", re: /^<(.+?)>\s+=/ },
