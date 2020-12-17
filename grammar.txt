@@ -1,4 +1,5 @@
-# taken from https://www.scientificpsychic.com/grammar/enggram6.html
+# Subset of English grammar.
+# Adapted from https://www.scientificpsychic.com/grammar/enggram6.html
 
 <Sentence> =
   <SimpleSentence> |
@@ -10,101 +11,212 @@
   <ConditionalSentence>
 
 <CompoundSentence> =
-  <SimpleSentence> <conjunction> <SimpleSentence> |
+  <SimpleSentence> <Conjunction> <SimpleSentence> |
   "Either" <DeclarativeSentence> "or" <DeclarativeSentence> |
   "Either" <ImperativeSentence> "or" <ImperativeSentence>
 
-<DeclarativeSentence> = <subject> <predicate> 
+<Conjunction> = "and" | "but" | "so" | "yet"
 
-<subject> = <SimpleSubject> | <CompoundSubject>
+<DeclarativeSentence> = 
+  "I" <Predicate> |
+  "you" <Predicate> |
+  <SubjectS> <Predicate3S> |
+  "we" <Predicate> |
+  "you" <Predicate> |
+  <SubjectPl> <Predicate>
 
-<SimpleSubject> = <NounPhrase> | <NomPersonalPronoun>
+<SubjectS> = <SimpleSubjectS> | <CompoundSubjectS>
+<SubjectPl> = <SimpleSubjectPl> | <CompoundSubjectPl>
 
-<NomPersonalPronoun> = "I" | "you" | "he" | "she" | "it" | "we" | "they"
+<SimpleSubjectS> = <NounPhraseS> | "he" | "she" | "it"
+<SimpleSubjectPl> = <NounPhrasePl> | "they"
 
-<noun> = 
-  <noun> |
-  <noun> <PrepPhr>
-
-<PrepPhr> = <preposition> <object>
-
-<adjective> = 
-  <adjective> "and" <adjective> |
-  <adjective> "or" <adjective>
-
-# check this ---------------------------------------------------------------
-<NounPhrase> =
-  "the" <SpecificProperNoun> |
+# 3rd person singular noun phrases
+<NounPhraseS> =
+  <article> <NounOptPP> |
+  <article> <AdjectiveOptConj> <NounOptPP> |
+  <article> <Adverb> <AdjectiveOptConj> <NounOptPP> |  
+  <PersonalPossessiveAdjective> <NounOptPP> |
+  <PersonalPossessiveAdjective> <AdjectiveOptConj> <NounOptPP> |
+  <PersonalPossessiveAdjective> <Adverb> <AdjectiveOptConj> <NounOptPP> |
   <ProperNoun> |
-  <NonPersonalPronoun> |
-  <article> [<adverb>* <adjective>] <noun> |
-  [<adverb>* <adjective>] <noun-plural> |
-  <proper noun-possessive> [<adverb>* <adjective>] <noun> |
-  <personal possessive adjective> [<adverb>* <adjective>] <noun> |
-  <article> <common noun-possessive>
-        [<adverb>* <adjective>] <noun> 
+  <NonPersonalPronoun>
 
-<CompoundSubject> =
-  <SimpleSubject> "and" <SimpleSubject> |
+# 3rd person plural noun phrases
+<NounPhrasePl> =
+  <NounPlural> |
+  <AdjectiveOptConj> <NounPlural> |
+  <Adverb> <AdjectiveOptConj> <NounPlural> |
+  <PersonalPossessiveAdjective> <NounPlural> |
+  <PersonalPossessiveAdjective> <AdjectiveOptConj> <NounPlural> |
+  <PersonalPossessiveAdjective> <Adverb> <AdjectiveOptConj> <NounPlural>
+
+<NonPersonalPronoun> = 
+  "someone" | "anyone" | "everything" | "someone" |
+  "nobody" | "nothing" | "something"
+
+<PersonalPossessiveAdjective> = 
+  "my" | "your" | "his" | "her" | "its" | "our" | "their"
+
+<NounOptPP> = 
+  <Noun> |
+  <Noun> <PrepPhr>
+
+<PrepPhr> = <Preposition> <Object>
+
+# adjective with an optional conjunction
+<AdjectiveOptConj> = 
+  <adjective> |
+  <AdjectiveOptConj> "and" <AdjectiveOptConj> |
+  <AdjectiveOptConj> "or" <AdjectiveOptConj>
+
+# singular compound subject
+<CompoundSubjectS> =
   <SimpleSubject> "or" <SimpleSubject> |
-  "Either" <SimpleSubject> "or" <SimpleSubject> |
-  "Neither" <SimpleSubject> "nor" <SimpleSubject> 
+  "Either" <SimpleSubject> "or" <SimpleSubject>
 
-<predicate> = 
-  <verb> <complement> |
-  <VerbPhrase> <complement>
+# plural compound subject
+<CompoundSubjectPl> =
+  <SimpleSubject> "and" <SimpleSubject> |
+  "Neither" <SimpleSubject> "nor" <SimpleSubject>
 
-<auxV> =  "must" | "may" |"might" |
-          "will" |"would" |"shall" |
-          "should" |"can" |"could"
+<Predicate> = 
+  <VerbIntr> |
+  <VerbIntr> <PrepPhr> |
+  <VerbDO> <DirectObject> |
+  <VerbIODO> <IndirectObject> <DirectObject> |
+  <VerbIODO> <DirectObject> "to" <IndirectObject> |
+  <VerbPhraseIntr> |
+  <VerbPhraseIntr> <PrepPhr> |
+  <VerbPhraseDO> <DirectObject> |
+  <VerbPhraseIODO> <IndirectObject> <DirectObject> |
+  <VerbPhraseIODO> <DirectObject> "to" <IndirectObject>
 
-<verb> = <V1s> |<V2s> |<V3s> |
-       <V1p> |<V2p> |<V3p> |
-       <Vpast> |<LinkingVerb>
+# predicate with 3rd person singular form
+<Predicate3S> = 
+  <VerbIntr3S> |
+  <VerbIntr3S> <PrepPhr> |
+  <VerbDO3S> <DirectObject> |
+  <VerbIODO3S> <IndirectObject> <DirectObject> |
+  <VerbIODO3S> <DirectObject> "to" <IndirectObject> |
+  <VerbPhraseIntr3S> |
+  <VerbPhraseIntr3S> <PrepPhr> |
+  <VerbPhraseDO3S> <DirectObject> |
+  <VerbPhraseIODO3S> <IndirectObject> <DirectObject> |
+  <VerbPhraseIODO3S> <DirectObject> "to" <IndirectObject>
 
-<LinkingVerb> = "am" |"are" |"is" | "was"| "were" |
-       "look" | "looks" | "looked" |
-       "become" | "became" | "become"
+<DirectObject> = 
+  <Object> |
+  <Ving>
 
-<VerbPhrase> =
-  ("had" |"have" |"has") ["not"] <Vpastp> |
-  ("had" |"have" |"has") ["not"] "been" [<Vpastp> | <Ving>] |
-  <auxV> ["not"] "have" <Vpastp> |
-  <auxV> ["not"] "have" "been" [<Vpastp> | <Ving>] |
-  <auxV> ["not"] "be" [<Vpastp> | <Ving>] |
-  <auxV> ["not"] <Vinf> |
-  "ought" ("to" | "not") <Vinf> |
-  "ought" ("to" | "not") "be" [<Vpastp> | <Ving>] |
-  "ought" ("to" | "not") "have" <Vpastp> |
-  "ought" ("to" | "not") "have" "been" [<Vpastp> | <Ving>] |
-  ("do" |"does" |"did") ["not"] [<Vinf>] |
-  ("am" |"are" |"is" |"was" |"were") ["not"] [<Vpastp> | <Ving>] |
-  ("am" |"are" |"is" |"was" |"were") ["not"] "being" [<Vpastp>] |
-  ("am" |"are" |"is" |"was" |"were") ["not"] "going" "to" [<Vinf>] 
+<IndirectObject> = <Object>
 
-# but these would need to agree with the appropriate kinds of verbs ------------------------------
-<complement> =
-       [[<IndirectObject>] <object>] |
-       [<adverb>* <adjective>] |
-       [<PrepPhr>*] |
-       ["to" <Vinf> [<object>]] |
-       [<Ving>]
+<auxV> =  
+  "must" | "may" |"might" |
+  "will" |"would" |"shall" |
+  "should" |"can" |"could"
 
-<IndirectObject> = <object> =
-       <SimpleObject> | <CompoundObject>
+<VerbPhraseIntr> = 
+  "have" <VIntrPastP> |
+  "have" "not" <VIntrPastP> |
+  "had" <VIntrPastP> |
+  "had" "not" <VIntrPastP> |
+  "have" "been" <VIntrIng> |
+  "have" "not" "been" <VIntrIng> |
+  <auxV> "have" <VIntrPastP> |
+  <auxV> "have" "not" <VIntrPastP> |
+  "do" <VIntrInf> |
+  "do" "not" <VIntrInf> |
+  "did" <VIntrInf> |
+  "did" "not" <VIntrInf>
+
+<VerbPhraseDO> = 
+  "have" <VDOPastP> |
+  "have" "not" <VDOPastP> |
+  "had" <VDOPastP> |
+  "had" "not" <VDOPastP> |
+  "have" "been" <VDOIng> |
+  "have" "not" "been" <VDOIng> |
+  <auxV> "have" <VDOPastP> |
+  <auxV> "have" "not" <VDOPastP> |
+  "do" <VDOInf> |
+  "do" "not" <VDOInf> |
+  "did" <VDOInf> |
+  "did" "not" <VDOInf>
+
+<VerbPhraseIODO> = 
+  "have" <VIODOPastP> |
+  "have" "not" <VIODOPastP> |
+  "had" <VIODOPastP> |
+  "had" "not" <VIODOPastP> |
+  "have" "been" <VIODOIng> |
+  "have" "not" "been" <VIODOIng> |
+  <auxV> "have" <VIODOPastP> |
+  <auxV> "have" "not" <VIODOPastP> |
+  "do" <VIODOInf> |
+  "do" "not" <VIODOInf> |
+  "did" <VIODOInf> |
+  "did" "not" <VIODOInf>
+
+<VerbPhraseIntr3S> = 
+  "has" <VIntrPastP> |
+  "has" "not" <VIntrPastP> |
+  "had" <VIntrPastP> |
+  "had" "not" <VIntrPastP> |
+  "has" "been" <VIntrIng> |
+  "has" "not" "been" <VIntrIng> |
+  <auxV> "have" <VIntrPastP> |
+  <auxV> "have" "not" <VIntrPastP> |
+  "does" <VIntrInf> |
+  "does" "not" <VIntrInf> |
+  "did" <VIntrInf> |
+  "did" "not" <VIntrInf>
+
+<VerbPhraseDO3S> = 
+  "has" <VDOPastP> |
+  "has" "not" <VDOPastP> |
+  "had" <VDOPastP> |
+  "had" "not" <VDOPastP> |
+  "has" "been" <VDOIng> |
+  "has" "not" "been" <VDOIng> |
+  <auxV> "have" <VDOPastP> |
+  <auxV> "have" "not" <VDOPastP> |
+  "does" <VDOInf> |
+  "does" "not" <VDOInf> |
+  "did" <VDOInf> |
+  "did" "not" <VDOInf>
+
+<VerbPhraseIODO3S> = 
+  "has" <VIODOPastP> |
+  "has" "not" <VIODOPastP> |
+  "had" <VIODOPastP> |
+  "had" "not" <VIODOPastP> |
+  "has" "been" <VIODOIng> |
+  "has" "not" "been" <VIODOIng> |
+  <auxV> "have" <VIODOPastP> |
+  <auxV> "have" "not" <VIODOPastP> |
+  "does" <VIODOInf> |
+  "does" "not" <VIODOInf> |
+  "did" <VIODOInf> |
+  "did" "not" <VIODOInf>
+
+<Object> =
+  <SimpleObject> | <CompoundObject>
 
 <SimpleObject> = 
-  <NounPhrase> |
+  <NounPhraseS> |
+  <NounPhrasePl> |
   <ObjPersonalPronoun>
 
-<ObjPersonalPronoun> = "me" | "you" | "him" | "her" |
-                        "it" | "us" | "you all" | "them"
+<ObjPersonalPronoun> = 
+  "me" | "you" | "him" | "her" |
+  "it" | "us" | "you all" | "them"
 
 <CompoundObject> =
   <SimpleObject> "and" <SimpleObject> |
   <SimpleObject> "or" <SimpleObject> 
 
-<ImperativeSentence> = <predicate>
+<ImperativeSentence> = <Predicate>
 
 <DependentClause> = 
   "if" <DeclarativeSentence> |

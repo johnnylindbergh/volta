@@ -10,23 +10,3 @@ class SentenceStructure {
     this.structure = _structure;
   }
 }
-
-// class PartOfSpeech {
-//   constructor() {}
-
-//   readWordList() {
-//     this.wordList = [];
-//   }
-// }
-
-// class SingleNoun extends PartOfSpeech {
-//   constructor(_listFile) { this.listFile = _listFile; }
-// }
-
-// class PluralNoun extends PartOfSpeech {
-//   constructor(_listFile) { this.listFile = _listFile; }
-// }
-
-// class ProperNoun extends PartOfSpeech {
-//   constructor(_listFile) { this.listFile = _listFile; }
-// }

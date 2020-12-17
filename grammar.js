@@ -174,7 +174,7 @@ function take(stream, n) {
 
 // how deep in the expanded start node's stream to look
 // for sentences structures of appropriate length.
-const EXPANSION_PREFIX = 1000;
+const EXPANSION_PREFIX = 2000;
 
 class CFG {
   constructor(_startLabel, _labelToNode) {

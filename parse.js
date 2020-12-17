@@ -1,14 +1,10 @@
 const { CFG, NonTerminal, Terminal, Literal } = require('./grammar.js');
 
-// const ruleBegin = /^\s+<.+?>\s+=/;
-
 const tokenPatterns = [
   { name: "lhs", re: /^<(.+?)>\s+=/ },
   { name: "symbol", re: /^<(.+?)>/ },
   { name: "literal", re: /^"(.+?)"/ },
   { name: "whitespace", re: /^\s+/ },
-  // { name: "whitespace", re: /^( |\t)+/ },
-  // { name: "linebreak", re: /^\n+/ },
   { name: "pipe", re: /^\|/ },
   { name: "equals", re: /^=/ },
   { name: "comment", re: /^#.*?\n/ }
@@ -161,16 +157,3 @@ function parseGrammar(text) {
 }
 
 module.exports = { parseGrammar }
-
-
-
-let text = `
-<Start> = <A> <C> | <B>
-  | <Other> "ok"
-<Other> = <neat>
-`;
-
-
-let g = parseGrammar(text);
-console.log(JSON.stringify(g));
-console.log(g.generateSentenceStructures(10));
