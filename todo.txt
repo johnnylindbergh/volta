@@ -1,3 +1,7 @@
+Todo.
+
+[] how do we handle conjugation/word lists
+[] implement poem generation
 
 ======== Representations of things ========
   Poem:

@@ -1,6 +1,6 @@
 
 module.exports = {
 
-  GRAMMAR_FILE: "./grammar.txt"
+  GRAMMAR_FILE: "./grammar/grammar.txt"
 
 }
